@@ -16,6 +16,7 @@ class RecipeDashboardTableViewManager: NSObject, TableViewManager {
     let numberOfCollectionsInSection = 1
     var sectionManagers: [RecipeDashBoardSection] = []
     let tableView: UITableView
+    let favouriteSectionHeight: CGFloat = 240
     
     
     init(presenter: RecipeDashboardPresenter, tableView: UITableView) {
@@ -48,15 +49,19 @@ class RecipeDashboardTableViewManager: NSObject, TableViewManager {
                                                         return UITableViewCell()
         }
         let collectionView = sectionManagers[indexPath.section].collectionView
+        let flowlayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        flowlayout.scrollDirection = presenter.items[indexPath.section] == .favourites
+            ?.horizontal
+            :.vertical
         collectionView.frame = cell.bounds
         cell.addSubview(collectionView)
-        
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.size.width / 3
+        return presenter.items[indexPath.section] == .favourites
+            ?favouriteSectionHeight
+            :tableView.bounds.size.height - favouriteSectionHeight
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
