@@ -20,24 +20,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoadingViewControllerDele
         window?.makeKeyAndVisible()
         window?.backgroundColor = .white
 
-        //intial view controller
-        guard let rootVC = UIStoryboard(name: LoadingViewController.StoryBoard.name.rawValue, bundle: .main).instantiateInitialViewController() as? LoadingViewController else {
-            return false
-        }
-        rootVC.delegate = self
-        window?.rootViewController = rootVC
+        
+        // Will launch touch id
+//        //intial view controller
+//        guard let rootVC = UIStoryboard(name: LoadingViewController.StoryBoard.name.rawValue, bundle: .main).instantiateInitialViewController() as? LoadingViewController else {
+//            return false
+//        }
+//        rootVC.delegate = self
+//        window?.rootViewController = rootVC
+        let navController = UINavigationController()
+        let dashboardVC =  RecipeDashboardBuilder().buildViewController()
+        navController.viewControllers = [dashboardVC]
+        self.window?.rootViewController = navController
         
         return true
     }
     
     func loadingDidFinish() {
         DispatchQueue.main.async {
-            let navController = UINavigationController()
-            let resListVC = RecipeListBuilder().buildViewController()
-            navController.viewControllers = [resListVC]
-            UIView.animate(withDuration: 2, animations: { [weak self] in
-                self?.window?.rootViewController = navController
-            })
+
         }
     }
 }

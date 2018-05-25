@@ -9,18 +9,17 @@
 import Foundation
 import UIKit
 
-class RecipeListViewController: UIViewController {
+class RecipeListViewController<T: ListPresenter>: UIViewController {
     
     let collectionView: UICollectionView
-    let dataSource: UICollectionViewDataSource
-    let delegate: UICollectionViewDelegate
-    let presenter: RecipeListPresenter
+    private let dataSource: UICollectionViewDataSource
+    private let presenter: T
     
-    init(presenter: RecipeListPresenter) {
+    init(presenter: T) {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: RecipeListCollectionViewFlowLayout())
         self.presenter = presenter
         self.dataSource = RecipeListCollectionViewDataSource(presenter: presenter)
-        self.delegate = RecipeListCollectionViewDelegate(presenter: presenter)
+        collectionView.dataSource = self.dataSource
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -32,12 +31,9 @@ class RecipeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Recipe List"
         collectionView.frame = view.bounds
         collectionView.backgroundColor = .clear
         collectionView.register(UINib(nibName: RecipeListCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: RecipeListCollectionViewCell.reuseIdentifier)
-        collectionView.dataSource = dataSource
-        collectionView.delegate = delegate
     
         view.addSubview(collectionView)
         presenter.loadData()
@@ -46,7 +42,7 @@ class RecipeListViewController: UIViewController {
 }
 
 extension RecipeListViewController: PresenterDelegate {
-    func didUpdate(presenter: RecipeListPresenter) {
+    func didUpdate() {
         DispatchQueue.main.async { [unowned self] in
             self.collectionView.reloadData()
         }

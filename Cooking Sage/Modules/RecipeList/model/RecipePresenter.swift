@@ -9,10 +9,10 @@
 import UIKit
 
 protocol PresenterDelegate {
-   func didUpdate(presenter: RecipeListPresenter)
+   func didUpdate()
 }
 
-class RecipeListPresenter {
+class RecipeListPresenter: ListPresenter {
     
     enum listSection: Int {
         case favourites = 0
@@ -20,11 +20,12 @@ class RecipeListPresenter {
     }
     
     var delegate: PresenterDelegate?
-    var recipes: [Recipe] = []
-    
+    var items: [Recipe] = []
+    typealias item = Recipe
+
     func loadData() {
         
-        recipes = [
+        items = [
             generateFrom(name: "Chicken Pot"),
             generateFrom(name: "Lamb Shanks"),
             generateFrom(name: "Pasta"),
@@ -35,7 +36,7 @@ class RecipeListPresenter {
             generateFrom(name: "Gambas"),
         ]
         
-        delegate?.didUpdate(presenter: self)
+        delegate?.didUpdate()
     }
     
     func generateFrom(name: String) -> Recipe {
