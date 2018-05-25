@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="QSL-V1-f5Q" customClass="RecipeListCollectionViewCell" customModule="Cooking_Sage" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-ay-0y2">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nao-To-VwQ">
+                        <rect key="frame" x="44.5" y="69" width="72.5" height="23.5"/>
+                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="20"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="nao-To-VwQ" firstAttribute="centerX" secondItem="QSL-V1-f5Q" secondAttribute="centerX" id="32b-t9-h6t"/>
+                <constraint firstItem="Wz9-ay-0y2" firstAttribute="leading" secondItem="QSL-V1-f5Q" secondAttribute="leading" id="KAu-9H-05O"/>
+                <constraint firstAttribute="trailing" secondItem="Wz9-ay-0y2" secondAttribute="trailing" id="cEc-EL-oHn"/>
+                <constraint firstAttribute="bottom" secondItem="Wz9-ay-0y2" secondAttribute="bottom" id="cMG-qL-HW5"/>
+                <constraint firstItem="nao-To-VwQ" firstAttribute="centerY" secondItem="QSL-V1-f5Q" secondAttribute="centerY" id="gcm-3T-LEs"/>
+                <constraint firstItem="Wz9-ay-0y2" firstAttribute="top" secondItem="QSL-V1-f5Q" secondAttribute="top" id="v0j-JZ-1g4"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="seD-zG-p4n"/>
+            <size key="customSize" width="114" height="138"/>
+            <connections>
+                <outlet property="imageView" destination="Wz9-ay-0y2" id="MWh-Cn-na4"/>
+                <outlet property="label" destination="nao-To-VwQ" id="SNn-P0-6OR"/>
+            </connections>
+            <point key="canvasLocation" x="61" y="64"/>
+        </collectionViewCell>
+    </objects>
+</document>

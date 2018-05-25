@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dej-4Z-Zgb">
+    <device id="ipad9_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Loading View Controller-->
+        <scene sceneID="qfZ-cS-6Ge">
+            <objects>
+                <viewController id="dej-4Z-Zgb" customClass="LoadingViewController" customModule="Cooking_Sage" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xtg-NE-Ktn">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cooking-sage-logo" translatesAutoresizingMaskIntoConstraints="NO" id="KlT-5b-xfs">
+                                <rect key="frame" x="467" y="220" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="JpT-b8-H8b"/>
+                                    <constraint firstAttribute="width" constant="90" id="nQw-80-t3s"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cooking Sage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZc-rV-Up2">
+                                <rect key="frame" x="353" y="390" width="318" height="51.5"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="44"/>
+                                <color key="textColor" red="0.64252079920000005" green="0.64252079920000005" blue="0.64252079920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DZc-rV-Up2" firstAttribute="top" secondItem="KlT-5b-xfs" secondAttribute="bottom" constant="80" id="XKK-db-FX1"/>
+                            <constraint firstItem="KlT-5b-xfs" firstAttribute="top" secondItem="70E-89-rhe" secondAttribute="top" constant="200" id="ggB-0H-fcI"/>
+                            <constraint firstItem="DZc-rV-Up2" firstAttribute="centerX" secondItem="xtg-NE-Ktn" secondAttribute="centerX" id="h5m-Z0-eOW"/>
+                            <constraint firstItem="KlT-5b-xfs" firstAttribute="centerX" secondItem="xtg-NE-Ktn" secondAttribute="centerX" id="zcU-br-Iuy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="70E-89-rhe"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zaq-tE-leZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="227" y="173"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cooking-sage-logo" width="30" height="30"/>
+    </resources>
+</document>
