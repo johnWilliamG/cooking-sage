@@ -8,17 +8,15 @@
 
 import UIKit
 
-class RecipeDashboardTableViewManager: NSObject, UITableViewDataSource, UITableViewDelegate {
+class RecipeDashboardTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     let presenter: RecipeDashboardPresenter
     let numberOfCollectionsInSection = 1
-    let tableView: UITableView
     let favouriteSectionHeight: CGFloat = 240
     
     
     init(presenter: RecipeDashboardPresenter, tableView: UITableView) {
         self.presenter = presenter
-        self.tableView = tableView
         super.init()
     }
     
@@ -30,7 +28,7 @@ class RecipeDashboardTableViewManager: NSObject, UITableViewDataSource, UITableV
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecipeDashboardCell.resueIdentifier,
                                                        for: indexPath) as? RecipeDashboardCell else {
-                                                        return UITableViewCell()
+            return UITableViewCell()
         }
         let collectionView = presenter.items[indexPath.section].collectionView
         let flowlayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
