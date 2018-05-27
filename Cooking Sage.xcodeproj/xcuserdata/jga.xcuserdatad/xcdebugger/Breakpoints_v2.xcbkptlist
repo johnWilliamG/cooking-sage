@@ -57,12 +57,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cooking Sage/Modules/Recipe Dashbpard/Model/RecipeDashboardSection.swift"
-            timestampString = "548979585.892036"
+            filePath = "Cooking Sage/Modules/Recipe Dashbpard/Entity/RecipeDashboardSection.swift"
+            timestampString = "549124099.830653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "didUpdate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -73,29 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cooking Sage/Modules/RecipeList/model/RecipePresenter.swift"
-            timestampString = "548979585.892375"
+            filePath = "Cooking Sage/Modules/Recipe Dashbpard/Model/RecipeDashboardTableViewManager.swift"
+            timestampString = "549124099.8309979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "loadData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cooking Sage/Modules/Recipe Dashbpard/RecipeDashboardViewController.swift"
-            timestampString = "548979585.8924299"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "didUpdate()"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

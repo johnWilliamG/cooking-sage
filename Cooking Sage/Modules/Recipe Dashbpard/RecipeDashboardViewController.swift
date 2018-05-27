@@ -32,10 +32,13 @@ class ReciepDashboardViewController: UIViewController {
         
         tableView.frame = view.bounds
         tableView.register(UINib(nibName: RecipeDashboardCell.nibName, bundle: .main), forCellReuseIdentifier: RecipeDashboardCell.resueIdentifier)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(tableView)
         presenter.loadData()
 
     }
+
     
 }
 
@@ -43,10 +46,6 @@ extension ReciepDashboardViewController: PresenterDelegate {
     
     func didUpdate() {
         DispatchQueue.main.async {
-            self.tableViewManager.updateSectionManagers()
-            for sectionManger in self.tableViewManager.sectionManagers {
-                sectionManger.sectionPresenter.loadData()
-            }
             self.tableView.reloadData()
         }
     }

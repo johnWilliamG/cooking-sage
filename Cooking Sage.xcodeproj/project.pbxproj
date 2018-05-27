@@ -155,6 +155,7 @@
 		C9FC578F20B87BEB00BADEB3 /* Recipe Dashbpard */ = {
 			isa = PBXGroup;
 			children = (
+				C9FC57A720B96ECD00BADEB3 /* Entity */,
 				C9FC579E20B895C000BADEB3 /* View */,
 				C9FC579320B87CB100BADEB3 /* Model */,
 				C9FC579820B8913E00BADEB3 /* RecipeDashboardBuilder.swift */,
@@ -177,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				C9FC579420B87CC300BADEB3 /* RecipeDashBoardPresenter.swift */,
-				C9FC579620B87EEF00BADEB3 /* RecipeDashboardSection.swift */,
 				C9FC57A520B8A8C500BADEB3 /* RecipeDashboardTableViewManager.swift */,
 			);
 			path = Model;
@@ -190,6 +190,14 @@
 				C9FC57A120B89C2E00BADEB3 /* RecipeDashboardCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C9FC57A720B96ECD00BADEB3 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				C9FC579620B87EEF00BADEB3 /* RecipeDashboardSection.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,7 +434,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kburts.Cooking-Sage";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -444,7 +452,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kburts.Cooking-Sage";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

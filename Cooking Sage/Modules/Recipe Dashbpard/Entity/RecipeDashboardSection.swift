@@ -13,20 +13,19 @@ enum RecipeDashBoardSectionType {
     case trending
 }
 
-protocol SectionManagerDelegate {
-    func sectionDidUpdate()
-}
-
 class RecipeDashBoardSection: NSObject, PresenterDelegate {
     
     let sectionPresenter: RecipeListPresenter
-    var delegate: SectionManagerDelegate?
+    var delegate: PresenterDelegate?
     let collectionView: UICollectionView
     let collectionViewDataSource: UICollectionViewDataSource
     let collectionViewDelegate: UICollectionViewDelegate
+    let type: RecipeDashBoardSectionType
     
-    init(sectionPresenter: RecipeListPresenter,
+    init(type: RecipeDashBoardSectionType,
+         sectionPresenter: RecipeListPresenter,
          collectionView: UICollectionView) {
+        self.type = type
         self.collectionView = collectionView
         self.sectionPresenter = sectionPresenter
         self.collectionViewDelegate = RecipeListCollectionViewDelegate(presenter: self.sectionPresenter)
@@ -41,7 +40,7 @@ class RecipeDashBoardSection: NSObject, PresenterDelegate {
     
     func didUpdate() {
         DispatchQueue.main.async {
-            self.delegate?.sectionDidUpdate()
+            self.delegate?.didUpdate()
             self.collectionView.reloadData()
         }
     }

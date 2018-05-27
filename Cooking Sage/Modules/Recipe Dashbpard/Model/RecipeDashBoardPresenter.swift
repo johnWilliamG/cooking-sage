@@ -6,7 +6,7 @@
 //  Copyright © 2018 John Galloway. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol  ListPresenter {
     
@@ -19,20 +19,35 @@ protocol  ListPresenter {
 }
 
 
-class RecipeDashboardPresenter: ListPresenter {
+class RecipeDashboardPresenter: ListPresenter, PresenterDelegate {
     
-    typealias item = RecipeDashBoardSectionType
-    
+    typealias item = RecipeDashBoardSection
     
     var delegate: PresenterDelegate?
-    var items: [item] = []
+    private(set) var items: [item] = []
     
     func loadData() {
         
         items = [
-            RecipeDashBoardSectionType.favourites,
-            RecipeDashBoardSectionType.trending,
+            generateSection(type: .favourites),
+            generateSection(type: .trending),
         ]
+        _ = items.compactMap({ $0.sectionPresenter.loadData() })
+        delegate?.didUpdate()
+    }
+    
+    func generateSection(type: RecipeDashBoardSectionType) -> RecipeDashBoardSection {
+        let presenter = RecipeListPresenter()
+        let section = RecipeDashBoardSection(
+            type: type,
+            sectionPresenter: presenter,
+            collectionView: UICollectionView(frame: .zero, collectionViewLayout: RecipeListCollectionViewFlowLayout())
+        )
+        presenter.delegate = self
+        return section
+    }
+    
+    func didUpdate() {
         delegate?.didUpdate()
     }
     

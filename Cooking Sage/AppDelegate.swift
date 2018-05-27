@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, LoadingViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -20,26 +20,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoadingViewControllerDele
         window?.makeKeyAndVisible()
         window?.backgroundColor = .white
 
-        
-        // Will launch touch id
-//        //intial view controller
-//        guard let rootVC = UIStoryboard(name: LoadingViewController.StoryBoard.name.rawValue, bundle: .main).instantiateInitialViewController() as? LoadingViewController else {
-//            return false
-//        }
-//        rootVC.delegate = self
-//        window?.rootViewController = rootVC
+        //Set Recipe Dashboard as first view controller
         let navController = UINavigationController()
         let dashboardVC =  RecipeDashboardBuilder().buildViewController()
         navController.viewControllers = [dashboardVC]
         self.window?.rootViewController = navController
         
+        //Set Up Touch ID for launch
+        /*
+         guard let rootVC = UIStoryboard(name: LoadingViewController.StoryBoard.name.rawValue, bundle: .main).instantiateInitialViewController() as? LoadingViewController else {
+             return false
+         }
+         rootVC.delegate = self
+         window?.rootViewController = rootVC
+         */
+        
         return true
-    }
-    
-    func loadingDidFinish() {
-        DispatchQueue.main.async {
-
-        }
     }
 }
 
+/*
+ extension AppDelegate: LoadingViewControllerDelegate {
+ 
+    func loadingDidFinish() {
+        DispatchQueue.main.async {
+            //set view controller after touch id did finish
+        }
+     }
+ }
+ */

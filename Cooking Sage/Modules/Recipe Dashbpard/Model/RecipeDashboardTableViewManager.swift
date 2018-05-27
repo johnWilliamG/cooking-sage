@@ -8,13 +8,10 @@
 
 import UIKit
 
-typealias TableViewManager = UITableViewDataSource & UITableViewDelegate & SectionManagerDelegate
-
-class RecipeDashboardTableViewManager: NSObject, TableViewManager {
+class RecipeDashboardTableViewManager: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     let presenter: RecipeDashboardPresenter
     let numberOfCollectionsInSection = 1
-    var sectionManagers: [RecipeDashBoardSection] = []
     let tableView: UITableView
     let favouriteSectionHeight: CGFloat = 240
     
@@ -23,19 +20,6 @@ class RecipeDashboardTableViewManager: NSObject, TableViewManager {
         self.presenter = presenter
         self.tableView = tableView
         super.init()
-        self.sectionManagers = presenter.items.map({ _ -> RecipeDashBoardSection in
-            let sectionManger = RecipeDashBoardSection(
-                sectionPresenter: RecipeListPresenter(),
-                collectionView: UICollectionView(
-                    frame: .zero,
-                    collectionViewLayout: RecipeListCollectionViewFlowLayout()
-                )
-            )
-            sectionManger.delegate = self
-            return sectionManger
-        })
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,9 +32,9 @@ class RecipeDashboardTableViewManager: NSObject, TableViewManager {
                                                        for: indexPath) as? RecipeDashboardCell else {
                                                         return UITableViewCell()
         }
-        let collectionView = sectionManagers[indexPath.section].collectionView
+        let collectionView = presenter.items[indexPath.section].collectionView
         let flowlayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        flowlayout.scrollDirection = presenter.items[indexPath.section] == .favourites
+        flowlayout.scrollDirection = presenter.items[indexPath.section].type == .favourites
             ?.horizontal
             :.vertical
         collectionView.frame = cell.bounds
@@ -59,30 +43,12 @@ class RecipeDashboardTableViewManager: NSObject, TableViewManager {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return presenter.items[indexPath.section] == .favourites
+        return presenter.items[indexPath.section].type == .favourites
             ?favouriteSectionHeight
             :tableView.bounds.size.height - favouriteSectionHeight
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionManagers.count
-    }
-    
-    func updateSectionManagers() {
-        self.sectionManagers = presenter.items.map({ _ -> RecipeDashBoardSection in
-            let sectionManger = RecipeDashBoardSection(
-                sectionPresenter: RecipeListPresenter(),
-                collectionView: UICollectionView(
-                    frame: .zero,
-                    collectionViewLayout: RecipeListCollectionViewFlowLayout()
-                )
-            )
-            sectionManger.delegate = self
-            return sectionManger
-        })
-    }
-    
-    func sectionDidUpdate() {
-        self.tableView.reloadData()
+        return presenter.items.count
     }
 }
