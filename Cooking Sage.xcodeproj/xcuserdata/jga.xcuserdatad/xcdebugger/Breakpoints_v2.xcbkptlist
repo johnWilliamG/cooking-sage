@@ -58,28 +58,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cooking Sage/Modules/Recipe Dashbpard/Entity/RecipeDashboardSection.swift"
-            timestampString = "549124099.830653"
+            timestampString = "549150641.307947"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
             endingLineNumber = "43"
             landmarkName = "didUpdate()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Cooking_Sage.RecipeDashBoardSection.didUpdate() -&gt; ()"
+                  moduleName = "Cooking Sage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jga/Documents/unloved/Cooking%20Sage/Cooking%20Sage/Modules/Recipe%20Dashbpard/Entity/RecipeDashboardSection.swift"
+                  timestampString = "549150641.4152991"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "14">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Cooking_Sage.RecipeDashBoardSection.didUpdate() -&gt; ()"
+                  moduleName = "Cooking Sage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jga/Documents/unloved/Cooking%20Sage/Cooking%20Sage/Modules/Recipe%20Dashbpard/Entity/RecipeDashboardSection.swift"
+                  timestampString = "549150641.418759"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cooking Sage/Modules/Recipe Dashbpard/Model/RecipeDashboardTableViewManager.swift"
-            timestampString = "549124099.8309979"
+            filePath = "Cooking Sage/Modules/Recipe Dashbpard/Model/RecipeDashboardPreviewDelegate.swift"
+            timestampString = "549150641.308017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
             endingLineNumber = "35"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "previewingContext(_:viewControllerForLocation:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cooking Sage/Modules/Recipe Dashbpard/Model/RecipeDashboardPreviewDelegate.swift"
+            timestampString = "549150641.308066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "previewingContext(_:viewControllerForLocation:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -11,15 +11,18 @@ import UIKit
 class ReciepDashboardViewController: UIViewController {
     
     let tableView: UITableView
+    let dataSource: UITableViewDataSource
+    let tableDelegate: UITableViewDelegate
     let presenter: RecipeDashboardPresenter
-    let tableViewManager: RecipeDashboardTableViewManager
+    var viewDelegate: UIViewControllerPreviewingDelegate?
     
     init(presenter: RecipeDashboardPresenter) {
         self.tableView = UITableView(frame: .zero)
         self.presenter = presenter
-        self.tableViewManager = RecipeDashboardTableViewManager(presenter: self.presenter, tableView: tableView)
-        self.tableView.delegate = tableViewManager
-        self.tableView.dataSource = tableViewManager
+        self.dataSource = RecipeDashboardTableViewDataSource(presenter: self.presenter)
+        self.tableDelegate = RecipeDashboardTableViewDelegate(presenter: self.presenter)
+        self.tableView.dataSource = self.dataSource
+        self.tableView.delegate = self.tableDelegate
         super.init(nibName: nil, bundle: .main)
     }
     
@@ -30,13 +33,20 @@ class ReciepDashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.frame = view.bounds
+        title = "Recipe Dashboard"
         tableView.register(UINib(nibName: RecipeDashboardCell.nibName, bundle: .main), forCellReuseIdentifier: RecipeDashboardCell.resueIdentifier)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         view.addSubview(tableView)
         presenter.loadData()
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view .trailingAnchor).isActive = true
+        self.viewDelegate = RecipeDashboardPreviewDelegate(viewController: self, tableView: tableView, presenter: presenter)
 
+        registerForPreviewing(with: self.viewDelegate!, sourceView: view)
     }
 
     

@@ -7,3 +7,44 @@
 //
 
 import Foundation
+
+extension UserDefaults {
+    
+    var favouriteRecipeKey: String {
+        return "FavouriteRecipeKey"
+    }
+    
+    @discardableResult
+    func add(recipe: Recipe?) -> Bool {
+        
+        guard let recipeName = recipe?.name else {
+            return false
+        }
+        
+        if (object(forKey: favouriteRecipeKey) == nil) {
+            set([], forKey: favouriteRecipeKey)
+        }
+        
+        guard var recipeNames = object(forKey: favouriteRecipeKey) as? [String] else {
+            return false
+        }
+        
+        guard recipeNames.contains(recipeName) else {
+            return false
+        }
+        
+        recipeNames.append(recipeName)
+        set(recipes, forKey: favouriteRecipeKey)
+        return synchronize()
+    }
+    
+    var recipes: [String] {
+        get {
+            guard let values = object(forKey: favouriteRecipeKey) as? [String] else {
+                return []
+            }
+            return values
+        }
+    }
+    
+}

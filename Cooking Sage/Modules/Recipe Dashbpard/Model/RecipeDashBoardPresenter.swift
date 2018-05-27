@@ -16,35 +16,36 @@ protocol  ListPresenter {
     
     var items: [item] { get }
     
+    var delegate: PresenterDelegate? { get set }
+    
 }
 
 
-class RecipeDashboardPresenter: ListPresenter, PresenterDelegate {
+class RecipeDashboardPresenter: PresenterDelegate {
     
     typealias item = RecipeDashBoardSection
     
     var delegate: PresenterDelegate?
-    private(set) var items: [item] = []
+    
+    var items: [RecipeDashBoardSection] = [] as! [RecipeDashBoardSection]
     
     func loadData() {
         
         items = [
-            generateSection(type: .favourites),
-            generateSection(type: .trending),
+            generateSectionFromType(type: .favourites),
+            generateSectionFromType(type: .trending)
         ]
         _ = items.compactMap({ $0.sectionPresenter.loadData() })
         delegate?.didUpdate()
     }
     
-    func generateSection(type: RecipeDashBoardSectionType) -> RecipeDashBoardSection {
-        let presenter = RecipeListPresenter()
-        let section = RecipeDashBoardSection(
+    func generateSectionFromType(type: RecipeDashBoardSectionType) -> RecipeDashBoardSection {
+        
+        return  RecipeDashBoardSection(
             type: type,
-            sectionPresenter: presenter,
-            collectionView: UICollectionView(frame: .zero, collectionViewLayout: RecipeListCollectionViewFlowLayout())
-        )
-        presenter.delegate = self
-        return section
+            sectionPresenter: RecipeListPresenter(),
+            collectionView: UICollectionView(frame: .zero, collectionViewLayout: RecipeListCollectionViewFlowLayout()))
+        
     }
     
     func didUpdate() {

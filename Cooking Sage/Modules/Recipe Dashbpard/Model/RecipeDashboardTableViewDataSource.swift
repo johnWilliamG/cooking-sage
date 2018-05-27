@@ -12,10 +12,8 @@ class RecipeDashboardTableViewDataSource: NSObject, UITableViewDataSource, UITab
     
     let presenter: RecipeDashboardPresenter
     let numberOfCollectionsInSection = 1
-    let favouriteSectionHeight: CGFloat = 240
     
-    
-    init(presenter: RecipeDashboardPresenter, tableView: UITableView) {
+    init(presenter: RecipeDashboardPresenter) {
         self.presenter = presenter
         super.init()
     }
@@ -30,20 +28,21 @@ class RecipeDashboardTableViewDataSource: NSObject, UITableViewDataSource, UITab
                                                        for: indexPath) as? RecipeDashboardCell else {
             return UITableViewCell()
         }
+        
         let collectionView = presenter.items[indexPath.section].collectionView
-        let flowlayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        guard let flowlayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return UITableViewCell()
+        }
         flowlayout.scrollDirection = presenter.items[indexPath.section].type == .favourites
             ?.horizontal
             :.vertical
-        collectionView.frame = cell.bounds
         cell.addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: cell.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: cell.trailingAnchor).isActive = true
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return presenter.items[indexPath.section].type == .favourites
-            ?favouriteSectionHeight
-            :tableView.bounds.size.height - favouriteSectionHeight
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

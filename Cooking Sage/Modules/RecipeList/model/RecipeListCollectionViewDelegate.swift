@@ -10,15 +10,12 @@ import UIKit
 
 class RecipeListCollectionViewDelegate: NSObject, UICollectionViewDelegate {
     
-    let presenter: RecipeListPresenter
+    var presenter: RecipeListPresenter?
     let cellSpacing: CGFloat = 12
 
     
-    init(presenter: RecipeListPresenter) {
+    init(presenter: RecipeListPresenter? = nil) {
         self.presenter = presenter
     }
 
-
-
-        
 }

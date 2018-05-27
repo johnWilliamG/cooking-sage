@@ -8,14 +8,15 @@
 
 import UIKit
 
-enum RecipeDashBoardSectionType {
-    case favourites
-    case trending
+enum RecipeDashBoardSectionType: String {
+    case favourites = "Favourites ❤️"
+    case trending = "Trending 🔥"
+    
 }
 
 class RecipeDashBoardSection: NSObject, PresenterDelegate {
     
-    let sectionPresenter: RecipeListPresenter
+    var sectionPresenter: RecipeListPresenter
     var delegate: PresenterDelegate?
     let collectionView: UICollectionView
     let collectionViewDataSource: UICollectionViewDataSource
@@ -28,7 +29,7 @@ class RecipeDashBoardSection: NSObject, PresenterDelegate {
         self.type = type
         self.collectionView = collectionView
         self.sectionPresenter = sectionPresenter
-        self.collectionViewDelegate = RecipeListCollectionViewDelegate(presenter: self.sectionPresenter)
+        self.collectionViewDelegate = RecipeListCollectionViewDelegate()
         self.collectionViewDataSource = RecipeListCollectionViewDataSource(presenter: self.sectionPresenter)
         self.collectionView.dataSource = self.collectionViewDataSource
         self.collectionView.delegate = self.collectionViewDelegate

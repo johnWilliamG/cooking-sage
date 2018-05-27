@@ -10,21 +10,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Recipe Preview View Controller-->
         <scene sceneID="Xtj-Ab-8hB">
             <objects>
-                <viewController id="OTm-Ej-mbH" sceneMemberID="viewController">
+                <viewController id="OTm-Ej-mbH" customClass="RecipePreviewViewController" customModule="Cooking_Sage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FLB-Ta-Lcx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jd1-eb-ZU4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jd1-eb-ZU4" firstAttribute="leading" secondItem="Q3B-pz-Mrs" secondAttribute="leading" id="0Al-Jd-kdU"/>
+                            <constraint firstItem="jd1-eb-ZU4" firstAttribute="bottom" secondItem="Q3B-pz-Mrs" secondAttribute="bottom" id="6ju-Kr-2RV"/>
+                            <constraint firstItem="jd1-eb-ZU4" firstAttribute="trailing" secondItem="Q3B-pz-Mrs" secondAttribute="trailing" id="c0w-Ql-S3S"/>
+                            <constraint firstItem="jd1-eb-ZU4" firstAttribute="top" secondItem="Q3B-pz-Mrs" secondAttribute="top" id="yRs-6i-acR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Q3B-pz-Mrs"/>
                     </view>
-                    <size key="freeformSize" width="375" height="667"/>
+                    <size key="freeformSize" width="375" height="375"/>
+                    <connections>
+                        <outlet property="previewImageView" destination="jd1-eb-ZU4" id="Lv7-LD-gOs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5os-Y7-koH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="44" y="105"/>
+            <point key="canvasLocation" x="44" y="104.7976011994003"/>
         </scene>
     </scenes>
 </document>

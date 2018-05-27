@@ -6,4 +6,10 @@
 //  Copyright © 2018 John Galloway. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class RecipeDashboardSectionHeader: UITableViewHeaderFooterView {
+    
+    @IBOutlet var sectionLabel: UILabel!
+    
+}
