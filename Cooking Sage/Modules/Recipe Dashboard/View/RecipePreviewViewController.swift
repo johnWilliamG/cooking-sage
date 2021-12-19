@@ -13,9 +13,11 @@ class RecipePreviewViewController: UIViewController {
     @IBOutlet var previewImageView: UIImageView?
     
     private let defaults: UserDefaults = .standard
+    private let notificationCenter: NotificationCenter = .default
     var recipe: Recipe?
     
     let favouriteActionTitle = "Favourite ❤️"
+    let dismisstitle = "Dismiss"
     
     enum Storyboard: String {
         
@@ -25,11 +27,14 @@ class RecipePreviewViewController: UIViewController {
     
     override var previewActionItems:  [UIPreviewActionItem] {
 
-        let favouriteAction = UIPreviewAction(title: favouriteActionTitle, style: .selected) { [weak self]  _, _ in
+        let favouriteAction = UIPreviewAction(title: favouriteActionTitle, style: .default) { [weak self]  _, _ in
             self?.defaults.add(recipe: self?.recipe)
+            self?.notificationCenter.post(name: RecipeListPresenter.loadDataNotificationName, object: nil)
         }
         
-        return [favouriteAction]
+        let dismissAction = UIPreviewAction(title: dismisstitle, style: .destructive) { _, _ in }
+        
+        return [favouriteAction,  dismissAction]
     }
     
 }

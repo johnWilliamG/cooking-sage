@@ -17,5 +17,9 @@ class RecipeListCollectionViewDelegate: NSObject, UICollectionViewDelegate {
     init(presenter: RecipeListPresenter? = nil) {
         self.presenter = presenter
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let recipe = presenter![indexPath.row]
+    }
 
 }

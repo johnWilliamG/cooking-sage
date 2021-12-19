@@ -19,52 +19,29 @@ class RecipeListPresenter: ListPresenter {
         case recipeList = 1 
     }
     
+    static let loadDataNotificationName: NSNotification.Name = NSNotification.Name(rawValue: "loadData")
+    
     var delegate: PresenterDelegate?
     var items: [Recipe] = []
-    typealias item = Recipe
+    let dataTask: () -> [Recipe]
+    let notificationCenter: NotificationCenter
+    
+    init(dataTask: @escaping () -> [Recipe],
+         notificationCenter: NotificationCenter = .default) {
+        self.dataTask = dataTask
+        self.notificationCenter = notificationCenter
+        self.notificationCenter.addObserver(self, selector: #selector(loadData), name: RecipeListPresenter.loadDataNotificationName, object: nil)
+    }
 
-    func loadData() {
-        
-        items = [
-            generateFrom(name: "Chicken Pot"),
-            generateFrom(name: "Lamb Shanks"),
-            generateFrom(name: "Pasta"),
-            generateFrom(name: "Chicken Pot"),
-            generateFrom(name: "Lamb Shanks"),
-            generateFrom(name: "Pasta"),
-            generateFrom(name: "Baked"),
-            generateFrom(name: "Gambas"),
-            generateFrom(name: "Chicken Pot"),
-            generateFrom(name: "Lamb Shanks"),
-            generateFrom(name: "Pasta"),
-            generateFrom(name: "Chicken Pot"),
-            generateFrom(name: "Lamb Shanks"),
-            generateFrom(name: "Pasta"),
-            generateFrom(name: "Baked"),
-            generateFrom(name: "Gambas"),
-            generateFrom(name: "Chicken Pot"),
-            generateFrom(name: "Lamb Shanks"),
-            generateFrom(name: "Pasta"),
-            generateFrom(name: "Chicken Pot"),
-            generateFrom(name: "Lamb Shanks"),
-            generateFrom(name: "Pasta"),
-            generateFrom(name: "Baked"),
-            generateFrom(name: "Gambas"),
-            generateFrom(name: "Chicken Pot"),
-            generateFrom(name: "Lamb Shanks"),
-            generateFrom(name: "Pasta"),
-            generateFrom(name: "Chicken Pot"),
-            generateFrom(name: "Lamb Shanks"),
-            generateFrom(name: "Pasta"),
-            generateFrom(name: "Baked"),
-            generateFrom(name: "Gambas"),
-        ]
-        
+    @objc func loadData() {
+        items = dataTask()
         delegate?.didUpdate()
     }
     
     func generateFrom(name: String) -> Recipe {
         return Recipe(name: name, image: UIImage(named: name)!)
     }
+    
+    
     
 }

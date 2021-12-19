@@ -29,12 +29,12 @@ extension UserDefaults {
             return false
         }
         
-        guard recipeNames.contains(recipeName) else {
+        if recipeNames.contains(recipeName) {
             return false
         }
         
         recipeNames.append(recipeName)
-        set(recipes, forKey: favouriteRecipeKey)
+        set(recipeNames, forKey: favouriteRecipeKey)
         return synchronize()
     }
     

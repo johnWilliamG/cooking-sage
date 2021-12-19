@@ -1,33 +1,59 @@
 //
-//  RecipeListBuilder.swift
+//  RecipeDashBoardPresenter.swift
 //  Cooking Sage
 //
-//  Created by John Galloway on 24/05/2018.
+//  Created by John Galloway on 25/05/2018.
 //  Copyright © 2018 John Galloway. All rights reserved.
 //
 
 import UIKit
 
-
-struct RecipeListBuilder {
+protocol  ListPresenter {
     
-    func buildViewController() -> RecipeListViewController<RecipeListPresenter> {
+    func loadData()
+    
+    associatedtype item
+    
+    var items: [item] { get set }
+    
+    var delegate: PresenterDelegate? { get set }
+    
+}
+
+
+class RecipeDashboardPresenter: PresenterDelegate {
         
-        let presenter = RecipeListPresenter(dataTask: dataTask)
-        let vc = RecipeListViewController(presenter: presenter)
-        presenter.delegate = vc
-        return vc
+    var delegate: PresenterDelegate?
+    
+    var items: [RecipeDashBoardSection] = []
+    
+    func loadData() {
+        
+        items = [
+            generateSectionFromType(type: .favourites),
+            generateSectionFromType(type: .trending)
+        ]
+        _ = items.compactMap({ $0.sectionPresenter.loadData() })
+        delegate?.didUpdate()
+    }
+    
+    func generateSectionFromType(type: RecipeDashBoardSectionType) -> RecipeDashBoardSection {
+        
+        return  RecipeDashBoardSection(
+            type: type,
+            sectionPresenter: RecipeListPresenter(dataTask: type == .favourites ? dataTask : dataTask),
+            collectionView: UICollectionView(frame: .zero, collectionViewLayout: RecipeListCollectionViewFlowLayout()))
         
     }
     
-    func buildCollectionView() -> UICollectionView {
-        
-        let presenter = RecipeListPresenter(dataTask: dataTask)
-        let dataSource = RecipeListCollectionViewDataSource(presenter: presenter)
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: RecipeListCollectionViewFlowLayout())
-        collectionView.dataSource = dataSource
-        return collectionView
+    func didUpdate() {
+        delegate?.didUpdate()
+    }
     
+    var userDefaultsTask: () -> [Recipe] = {
+        return UserDefaults.standard.recipes.compactMap({
+            return Recipe(name: $0, image: UIImage(named: $0)!)
+        })
     }
     
     var dataTask: () -> [Recipe] = {
@@ -69,7 +95,7 @@ struct RecipeListBuilder {
             generateFrom(name: "Pasta"),
             generateFrom(name: "Baked"),
             generateFrom(name: "Gambas"),
-            ]
+        ]
     }
     
 }

@@ -11,17 +11,17 @@ import UIKit
 enum RecipeDashBoardSectionType: String {
     case favourites = "Favourites ❤️"
     case trending = "Trending 🔥"
-    
 }
 
 class RecipeDashBoardSection: NSObject, PresenterDelegate {
     
-    var sectionPresenter: RecipeListPresenter
+    let sectionPresenter: RecipeListPresenter
     var delegate: PresenterDelegate?
     let collectionView: UICollectionView
     let collectionViewDataSource: UICollectionViewDataSource
     let collectionViewDelegate: UICollectionViewDelegate
     let type: RecipeDashBoardSectionType
+    let gestureDelegate: RecipeListGesturerecogniserDelegate<RecipeListPresenter>
     
     init(type: RecipeDashBoardSectionType,
          sectionPresenter: RecipeListPresenter,
@@ -35,6 +35,10 @@ class RecipeDashBoardSection: NSObject, PresenterDelegate {
         self.collectionView.delegate = self.collectionViewDelegate
         collectionView.backgroundColor = .clear
         collectionView.register(UINib(nibName: RecipeListCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: RecipeListCollectionViewCell.reuseIdentifier)
+        self.gestureDelegate = RecipeListGesturerecogniserDelegate(presenter: self.sectionPresenter,
+                                                                   collectionView: self.collectionView)
+        let longPressRecogniser = UILongPressGestureRecognizer(target: gestureDelegate, action: #selector(gestureDelegate.handleLongPress))
+        collectionView.addGestureRecognizer(longPressRecogniser)
         super.init()
         self.sectionPresenter.delegate = self
     }

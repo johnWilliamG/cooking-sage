@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import WebKit
+import SafariServices
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .white
-
         //Set Recipe Dashboard as first view controller
         let navController = UINavigationController()
         let dashboardVC =  RecipeDashboardBuilder().buildViewController()
